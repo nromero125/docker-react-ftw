@@ -8,4 +8,17 @@ before_install:
 script:
   - docker run -e CI=true nromero125/docker-react-ftw npm run test -- --coverage
 
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  name: "docker-react-ftw"
+  env: "DockerReactFtw-env"
+  bucket_name: "elasticbeanstalk-us-east-1-799848669340"
+  bucket_path: "docker-react-ftw"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: $AWS_SECRET_KEY
+
 language: generic 
