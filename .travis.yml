@@ -1,0 +1,11 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t nromero125/docker-react-ftw -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true nromero125/docker-react-ftw npm run test -- --coverage
+
+language: generic 
